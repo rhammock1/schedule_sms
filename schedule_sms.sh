@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #  Goal:
-#   Have a main plist to run every night and check for files in a folder
+#   Have a main plist to watch a folder and check for new files in that folder.
 #   If there are files, attempt to schedule the message based on the contents
 #   of the file 
 

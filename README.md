@@ -2,10 +2,9 @@
 
 ### Description
 
-This script will run as part of a LaunchCtl Agent. When the agent runs at night,
-it will check for new files in the path to the messages folder.
+This script will run as part of a LaunchCtl Agent. The agent will watch a folder, `messages`, for new files.
 
-Each new file will be parsed, and a new plist will be created/loaded for each new message.
+Each new file will be parsed, and a new plist will be created/loaded for each new message. Plist will be unloaded and deleted after successful send
 
 #### File Contents
 ```
