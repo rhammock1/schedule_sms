@@ -10,8 +10,6 @@
     <dict>
       <key>PATH</key>
       <string>/usr/local/bin:/usr/bin:/bin:/Users/rhammock/scripts/bin</string>
-      <key>PHONE</key>
-      <string>1234567890</string>
     </dict>
     <key>WorkingDirectory</key>
     <string>/Users/rhammock/scripts/schedule_sms</string>
@@ -20,9 +18,9 @@
       <string>/Users/rhammock/scripts/schedule_sms/messages</string>
     </array>
     <key>StandardOutPath</key>
-    <string>scheduler.log</string>
+    <string>logs/scheduler.log</string>
     <key>StandardErrorPath</key>
-    <string>error.log</string>
+    <string>logs/error.log</string>
     <key>LimitLoadToSessionType</key>
     <string>Aqua</string>
   </dict>

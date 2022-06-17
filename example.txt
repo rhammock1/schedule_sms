@@ -1,4 +1,4 @@
 Contact: 1234567890
 Date: 06-10-2022
-Time: 8:00
-Message: "Hey, I love you!"
+Time: 08:00
+Message: 'Hey, I love you!'

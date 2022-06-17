@@ -1,19 +1,44 @@
 #!/bin/bash
 
-#  Goal:
-#   Have a main plist to watch a folder and check for new files in that folder.
-#   If there are files, attempt to schedule the message based on the contents
-#   of the file 
+#  Current limitation is that only one message can be sent per minute.
+#  LaunchCtl only knows the directory was modified
+#
+#
+#
+#
+#
 
-#  Usage: 
-#   Load Launchclt plist to check a folder for files and 
-#   create temp plist for each file to run at specified time.
-#   Delete the file when done, but only after successful send
-#
-#  Content:
-#   message.txt
-#
-#   Contact: Number or Contact Name
-#   Date: 06-10-2022 (MM-DD-YYYY)
-#   Time: 13:00 (24 hour time)
-#   Message: "Words" between quotes for easy tracking
+printf "A file was changed! $(date)\n"
+
+MODIFIED_FILE_PATH="messages/$(ls -Art messages/ | tail -1)"
+
+# Check if file has been scheduled
+if [ $(grep "SCHEDULED" "$MODIFIED_FILE_PATH") ]; then
+    printf "File already scheduled"
+    exit 0
+fi
+
+# Parse file for date and time
+DATE=$(grep "Date:" "$MODIFIED_FILE_PATH" | cut -d ' ' -f 2)
+TIME=$(grep "Time:" "$MODIFIED_FILE_PATH" | cut -d ' ' -f 2)
+
+# Read date and time into arrays
+IFS='-' read -a DATE_ARRAY <<< "$DATE" 
+IFS=':' read -a TIME_ARRAY <<< "$TIME"
+
+# Format date and time for at command
+# [[CC]YY]MMDDHHMM[.SS]]]]
+SCHEDULED_TIME=''
+for i in ${DATE_ARRAY[@]}; do
+    SCHEDULED_TIME="$SCHEDULED_TIME${i//[$'\t\r\n ']}"
+done
+for i in ${TIME_ARRAY[@]}; do
+    SCHEDULED_TIME="$SCHEDULED_TIME${i//[$'\t\r\n ']}"
+done
+
+# Schedule message
+at -t $SCHEDULED_TIME -f send_sms.sh
+
+# Append flag to file
+printf "\r\nSCHEDULED\r\n" >> $MODIFIED_FILE_PATH
+printf "$SCHEDULED_TIME" >> $MODIFIED_FILE_PATH
