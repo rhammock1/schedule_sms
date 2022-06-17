@@ -4,7 +4,7 @@
 FILE_PATH=$(grep -r "$(date +'%Y%m%d%H%M')" messages | cut -d ':' -f 1)
 
 # Parse file for message and contact
-MESSAGE=$(grep "Message:" "$FILE_PATH" | cut -d "'" -f 2)
+MESSAGE=$(grep "Message:" "$FILE_PATH" | cut -d "\"" -f 2)
 CONTACT=$(grep "Contact:" "$FILE_PATH" | cut -d ' ' -f 2)
 
 # Only keep the numbers

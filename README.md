@@ -21,5 +21,15 @@ Messages should be created as `*.txt` files. Filenames do not matter.
   Contact: 1234567890 (any phone number)
   Date: 2022-06-08 (YYYY-MM-DD)
   Time: 13:00 (24 hour time)
-  Message: "Message content between quotes"
+  Message: "Message content between double-quotes [\t|\n|\r] are allowed"
 ```
+
+#### TODO
+* Delete file or move to new directory after sending
+* Add a way to support multi line messages
+  i.e. ```
+    Message: "Content
+      Content on a new line
+      More content
+      And finall the ending quote"
+  ```
