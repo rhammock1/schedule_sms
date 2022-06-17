@@ -5,24 +5,22 @@
     <key>Label</key>
     <string>com.example.schedulesms</string>
     <key>Program</key>
-    <string>/Users/rhammock/scripts/schedule_sms/schedule_sms.sh</string>
+    <string>/Users/user/scripts/schedule_sms/schedule_sms.sh</string>
     <key>EnvironmentVariables</key>
     <dict>
       <key>PATH</key>
-      <string>/usr/local/bin:/usr/bin:/bin:/Users/rhammock/scripts/bin</string>
-      <key>PHONE</key>
-      <string>1234567890</string>
+      <string>/usr/local/bin:/usr/bin:/bin:/Users/user/scripts/bin</string>
     </dict>
     <key>WorkingDirectory</key>
-    <string>/Users/rhammock/scripts/schedule_sms</string>
+    <string>/Users/user/scripts/schedule_sms</string>
     <key>WatchPaths</key>
     <array>
-      <string>/Users/rhammock/scripts/schedule_sms/messages</string>
+      <string>/Users/user/scripts/schedule_sms/messages</string>
     </array>
     <key>StandardOutPath</key>
-    <string>scheduler.log</string>
+    <string>logs/scheduler.log</string>
     <key>StandardErrorPath</key>
-    <string>error.log</string>
+    <string>logs/error.log</string>
     <key>LimitLoadToSessionType</key>
     <string>Aqua</string>
   </dict>
