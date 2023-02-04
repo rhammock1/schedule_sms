@@ -7,12 +7,19 @@ FILE_PATH=$(grep -r "$(date +'%Y%m%d%H%M')" messages | cut -d ':' -f 1)
 MESSAGE=$(grep "Message:" "$FILE_PATH" | cut -d "\"" -f 2)
 CONTACT=$(grep "Contact:" "$FILE_PATH" | cut -d ' ' -f 2)
 
-# Only keep the numbers
-NUMBER=${CONTACT//[^[:digit:].-]/}
+if [ -z $"CONTACT" ]; then
+  title="Scheduled Message Sent"
+  subtitle="SMS"
+  message="SMS that was scheduled was sent."
 
-# Send message
-osascript -e "tell application \"Messages\" to send \"$MESSAGE\" to buddy \"$NUMBER\""
+  osascript -e "display notification \"$message\" with title \"$title\" subtitle \"$subtitle\""
+else
+  # Only keep the numbers
+  NUMBER=${CONTACT//[^[:digit:].-]/}
 
+  # Send message
+  osascript -e "tell application \"Messages\" to send \"$MESSAGE\" to buddy \"$NUMBER\""
+fi
 # Delete file
 # While testing, just append delivered and timestamp to file
 printf "\r\nDELIVERED\r\n" >> $FILE_PATH

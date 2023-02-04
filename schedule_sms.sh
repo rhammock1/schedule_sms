@@ -31,4 +31,10 @@ for MODIFIED_FILE_PATH in $(grep -Lr "SCHEDULED" messages); do
   # Append flag to file
   printf "\r\nSCHEDULED\r\n" >> $MODIFIED_FILE_PATH
   printf "$SCHEDULED_TIME" >> $MODIFIED_FILE_PATH
+
+  title="SMS Scheduled"
+  subtitle="SMS"
+  message="SMS message was scheduled for $SCHEDULED_TIME."
+
+  osascript -e "display notification \"$message\" with title \"$title\" subtitle \"$subtitle\""
 done
